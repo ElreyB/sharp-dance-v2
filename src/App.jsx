@@ -1,10 +1,10 @@
-import React, { useEffect, useSelector } from 'react';
-import { useAppDispatch, useAppSelector } from './redux/hooks';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchClasses } from './redux/slices/classScheduleSlice';
 
 const App = () => {
-  const dispatch = useAppDispatch();
-  const { classSchedule, status, error } = useAppSelector((state) => state);
+  const dispatch = useDispatch();
+  const {classSchedule, status, error} = useSelector((state) => state.classSchedule);
 
   useEffect(() => {
     if (status === 'idle') {
