@@ -5,6 +5,7 @@ import pageReducer from './slices/pageSlice';
 import mediaReducer from './slices/mediaSlice';
 import organizatioinReducer from './slices/organizationSlice';
 import performancesReducer from './slices/performancesSlice';
+import pressReducer from './slices/pressSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     media: mediaReducer,
     organizations: organizatioinReducer,
     performances: performancesReducer,
+    press: pressReducer,
   },
 });
 
