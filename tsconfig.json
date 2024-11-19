@@ -16,6 +16,6 @@
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "styled.d.ts"],
   "exclude": ["src/**/*.js"]  // Exclude JavaScript files to avoid compilation errors
 }
