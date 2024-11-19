@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import classesReducer from './slices/classScheduleSlice';
 import pageReducer from './slices/pageSlice';
 import mediaReducer from './slices/mediaSlice';
+import organizatioinReducer from './slices/organizationSlice';
 
 const store = configureStore({
   reducer: {
     classSchedule: classesReducer,
     page: pageReducer,
     media: mediaReducer,
+    organizations: organizatioinReducer,
   },
 });
 
