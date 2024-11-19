@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPress } from './redux/slices/pressSlice';
+import { fetchQuotes } from './redux/slices/quotesSlice';
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const { press, status, error } = useSelector(state => state.press);
+  const { quotes, status, error } = useSelector(state => state.quotes);
 
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchPress());
+    if (status === 'idle') dispatch(fetchQuotes());
   }, [status,dispatch]);
 
   if (status === 'loading') {
@@ -24,7 +24,7 @@ const App = () => {
     );
   }
 
-  console.log({ press });
+  console.log({ quotes });
 
   return <div>classedk</div>;
 };
