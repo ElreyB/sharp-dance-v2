@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrganizations } from './redux/slices/organizationSlice';
+import { fetchPerformances } from './redux/slices/performancesSlice';
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const { organizations, status, error } = useSelector(state => state.organizations);
+  const { performances, status, error } = useSelector(state => state.performances);
 
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchOrganizations());
+    if (status === 'idle') dispatch(fetchPerformances());
   }, [status,dispatch]);
 
   if (status === 'loading') {
@@ -24,7 +24,7 @@ const App = () => {
     );
   }
 
-  console.log({ organizations });
+  console.log({ performances });
 
   return <div>classedk</div>;
 };
