@@ -7,6 +7,7 @@ import organizatioinReducer from './slices/organizationSlice';
 import performancesReducer from './slices/performancesSlice';
 import pressReducer from './slices/pressSlice';
 import quotesReducer from './slices/quotesSlice';
+import resourcesReducer from './slices/resourcesSlice';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     performances: performancesReducer,
     press: pressReducer,
     quotes: quotesReducer,
+    resources: resourcesReducer,
   },
 });
 
