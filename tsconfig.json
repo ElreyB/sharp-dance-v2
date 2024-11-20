@@ -14,7 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+     "typeRoots": [
+      "./node_modules/@types"
+    ],
     "types": ["vite/client"]
+
   },
   "include": ["src/**/*", "styled.d.ts"],
   "exclude": ["src/**/*.js"]  // Exclude JavaScript files to avoid compilation errors

@@ -1,0 +1,19 @@
+const prefix: string = '';
+
+export const ABOUT: string = `${prefix}/about`;
+export const BIOS: string = `${prefix}/bios`;
+export const CLASSES: string = `${prefix}/classes`;
+export const CONTACT: string = `${prefix}/contact`;
+export const DONATIONS: string = `${prefix}/donations`;
+export const DIANE: string = `${prefix}/artistic-director`;
+export const EVENTS: string = `${prefix}/events`;
+export const PAST_EVENTS: string = `${EVENTS}/past`;
+export const LANDING: string = `${prefix}/`;
+export const MEDIA: string = `${prefix}/media`;
+export const PHOTOGRAPHY: string = `${prefix}/photography`;
+export const PRESS: string = `${prefix}/press`;
+export const PRESS_KIT: string = `${prefix}/press-kit`;
+export const SIGN_IN: string = `${prefix}/signin`;
+export const SIGN_UP: string = `${prefix}/signup`;
+export const INTENSIVE: string = `${prefix}/intensive`;
+export const ERROR: string = `${prefix}/404`;
