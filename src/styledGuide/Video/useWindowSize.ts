@@ -1,7 +1,7 @@
-import React from "react";
+import {useEffect} from "react";
 
-export function useWindowResize(cb) {
-  React.useEffect(() => {
+export function useWindowResize(cb: () => void): void {
+  useEffect(() => {
     function onResize() {
       window.requestAnimationFrame(cb);
     }
