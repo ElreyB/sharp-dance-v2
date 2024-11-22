@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Image } from '../Image';
 import { Markdown } from '../Markdown';
 

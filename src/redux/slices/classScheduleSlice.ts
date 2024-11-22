@@ -3,16 +3,20 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { ClassSchedule } from '../../types/classSchedule';
 
-interface ClassesState {
-  classSchedule: ClassSchedule[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | undefined;
+interface ClassScheduleState {
+  data: ClassSchedule[];
+  meta: {
+    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    error: string | null;
+  };
 }
 
-const initialState: ClassesState = {
-  classSchedule: [],
-  status: 'idle',
-  error: undefined,
+const initialState: ClassScheduleState = {
+  data: [],
+  meta: {
+    status: 'idle',
+    error: null,
+  },
 };
 
 export const fetchClasses = createAsyncThunk(
@@ -44,21 +48,20 @@ export const fetchClasses = createAsyncThunk(
   }
 );
 
-const classesSlice = createSlice({
+const classScheduleSlice = createSlice({
   name: 'classSchedule',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchClasses.pending, (state) => {
-        state.status = 'loading';
+        state.meta.status = 'loading';
+        state.meta.error = null;
       })
       .addCase(fetchClasses.fulfilled, (state, action) => {
-        console.log({ action });
         const now = new Date().getTime();
-        const isFuture = (time: number) => {
-          return time > now;
-        };
+        const isFuture = (time: number) => time > now;
+
         const upcomingClassSchedule = action.payload.map((classSchedule) => {
           const dates = classSchedule.dates.filter((date) => {
             const dateTime = new Date(date.days).getTime();
@@ -69,14 +72,15 @@ const classesSlice = createSlice({
             ? { ...classSchedule }
             : { ...classSchedule, dates };
         });
-        state.status = 'succeeded';
-        state.classSchedule = upcomingClassSchedule;
+
+        state.meta.status = 'succeeded';
+        state.data = upcomingClassSchedule;
       })
       .addCase(fetchClasses.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
+        state.meta.status = 'failed';
+        state.meta.error = action.error.message || 'Failed to fetch classes';
       });
   },
 });
 
-export default classesSlice.reducer;
+export default classScheduleSlice.reducer;

@@ -4,9 +4,11 @@ import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   plugins: [
+    svgr(),
     react({
       babel: {
         plugins: [
+          // Support for styled-components
           [
             'babel-plugin-styled-components',
             {
@@ -14,7 +16,8 @@ export default defineConfig({
               fileName: false,
             },
           ],
-          svgr(),
+          // Enable Babel macros
+          'babel-plugin-macros',
         ],
       },
     }),

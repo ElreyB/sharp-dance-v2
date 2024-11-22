@@ -1,9 +1,11 @@
-import React, { useRef, useState, useEffect, forwardRef } from "react";
-import ReactPlayer from "react-player";
-import styled from "styled-components/macro";
-import { useWindowResize } from "./useWindowSize";
+import React, { useRef, useState, useEffect, forwardRef } from 'react';
+import ReactPlayer from 'react-player';
+import styled from 'styled-components';
+import { useWindowResize } from './useWindowSize';
 
+// Constants
 const MAX_WIDTH = 1200;
+const ASPECT_RATIO = 9 / 16; // 16:9 aspect ratio
 
 // Styled components
 const StyledPlayer = styled(ReactPlayer)`
@@ -17,7 +19,7 @@ const StyledGrid = styled.div`
   background-color: black;
 `;
 
-// Component Props
+// Props for the FullPageVideo component
 interface FullPageVideoProps {
   src: string; // Required video source URL
   className?: string; // Optional CSS class for styling
@@ -29,20 +31,18 @@ export const FullPageVideo: React.FC<FullPageVideoProps> = ({
   className,
   onReady,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState("100vh");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState('100vh');
 
-  // Adjust video size based on window resize or iframe ratio
+  // Resize logic to adjust the video player based on window size
   const resize = () => {
-    const wrapper = ref.current;
-
-    if (wrapper) {
-      const iframe = wrapper.querySelector("iframe");
+    if (containerRef.current) {
+      const iframe = containerRef.current.querySelector('iframe');
 
       if (iframe) {
+        const desiredHeight =
+          Math.min(MAX_WIDTH, window.innerWidth) * ASPECT_RATIO;
         const iframeSize = iframe.getBoundingClientRect();
-        const ratio = 9 / 16; // Aspect ratio for 16:9
-        const desiredHeight = Math.min(MAX_WIDTH, window.innerWidth) * ratio;
 
         if (iframeSize.height !== desiredHeight) {
           setHeight(`${desiredHeight}px`);
@@ -54,24 +54,21 @@ export const FullPageVideo: React.FC<FullPageVideoProps> = ({
   // Hook to handle window resize
   useWindowResize(resize);
 
-  // Ensure video resizes on mount
+  // Ensure video resizes on initial mount
   useEffect(() => {
     resize();
   }, []);
 
   return (
-    <StyledGrid>
+    <StyledGrid ref={containerRef}>
       <Video
         muted
         playing
         src={src}
-        ref={ref}
         className={className}
         width="100%"
         height={height}
-        onPlay={resize}
         onReady={onReady}
-        onProgress={resize}
         loop
       />
     </StyledGrid>
@@ -87,30 +84,29 @@ interface VideoProps {
   className?: string; // Optional CSS class
   width?: string; // Width of the video player
   height?: string; // Height of the video player
-  onPlay?: () => void; // Callback when the video starts playing
   onReady?: () => void; // Callback when the video is ready
-  onProgress?: () => void; // Callback for progress events
   loop?: boolean; // Should the video loop
 }
 
 export const Video = forwardRef<HTMLDivElement, VideoProps>(
-  ({ src, controls = false, ...props }, ref) => {
+  ({ src, controls = false, className, ...props }, ref) => {
     if (!src) return null;
 
     return (
       <StyledPlayer
         url={src}
-        ref={ref}
-        {...props}
+        className={className}
         controls={controls}
         config={
           controls
             ? undefined
             : { vimeo: { playerOptions: { background: true } } }
         }
+        ref={ref as React.RefObject<ReactPlayer>}
+        {...props}
       />
     );
   }
 );
 
-Video.displayName = "Video";
+Video.displayName = 'Video';

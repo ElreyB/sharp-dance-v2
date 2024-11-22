@@ -16,6 +16,6 @@
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
-  "include": ["src/**/*", "src/types/vite-env.d.ts", "styled.d.ts"],
+  "include": ["src/**/*", "src/types/vite-env.d.ts", "src/types/styled.d.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,10 @@
+export * from './404';
+export * from './About';
+export * from './Bios';
+export * from './Classes';
+// export * from "./Contact";
+// export * from "./Events";
+// export * from "./Home";
+// export * from "./Loading";
+// export * from "./Media";
+// export * from "./Press";

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TiGlobeOutline, TiTicket } from 'react-icons/ti';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { P } from '../P';
 import { IconAnchor } from './IconAnchor';
 import { DateTime } from './DateTime';
@@ -36,7 +36,7 @@ const Header = styled.header`
 
 interface ScheduleProps {
   address?: string;
-  dates: {
+  dates?: {
     days: string;
     month: number;
     year: number;

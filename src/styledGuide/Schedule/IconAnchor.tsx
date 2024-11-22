@@ -1,5 +1,5 @@
 import { IconContext } from 'react-icons';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { A } from '../A';
 
 const StyledA = styled(A)`

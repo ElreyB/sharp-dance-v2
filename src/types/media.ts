@@ -11,6 +11,7 @@ export interface Media {
   availableForPerformance: boolean;
   availableForTour: boolean;
   content: string;
+  id: string;
   images: Image[];
   subtitle: string;
   title: string;

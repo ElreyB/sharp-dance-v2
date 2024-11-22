@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import classesReducer from './slices/classScheduleSlice';
 import pageReducer from './slices/pageSlice';
 import mediaReducer from './slices/mediaSlice';
-import organizatioinReducer from './slices/organizationSlice';
+import organizatioinReducer from './slices/organizationsSlice';
 import performancesReducer from './slices/performancesSlice';
 import pressReducer from './slices/pressSlice';
 import quotesReducer from './slices/quotesSlice';

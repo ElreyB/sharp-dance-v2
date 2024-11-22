@@ -13,7 +13,7 @@ export interface Performance {
   footnote: string;
   location: string;
   name: string;
-  pathId: string;
+  pathId?: string;
   pricing: string;
   purchaseUrl: string;
   website: string;

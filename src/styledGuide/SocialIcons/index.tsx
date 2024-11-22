@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { A } from '../A';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;

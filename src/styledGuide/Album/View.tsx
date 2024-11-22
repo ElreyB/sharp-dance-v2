@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components/macro";
-import { isImageURL } from "./utils";
+import React from 'react';
+import styled from 'styled-components';
+import { isImageURL } from './utils';
 
-import { Video } from "../Video";
+import { Video } from '../Video';
 
 const StyledView = styled.div`
   line-height: 0;

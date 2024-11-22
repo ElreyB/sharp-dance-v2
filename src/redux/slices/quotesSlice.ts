@@ -3,64 +3,67 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { Quote } from '../../types/quote';
 
-interface QuoteState {
-  quotes: Quote[];
+interface MetaState {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | undefined;
+  error: string | null;
+}
+
+interface QuoteState {
+  data: Quote[] | null;
+  meta: MetaState;
 }
 
 const initialState: QuoteState = {
-  quotes: [],
-  status: 'idle',
-  error: undefined,
+  data: null,
+  meta: {
+    status: 'idle',
+    error: null,
+  },
 };
 
-export const fetchQuotes = createAsyncThunk(
-  'quotes/fetchQuotes',
-  async (): Promise<Quote[]> => {
-    try {
-      console.log('fetchQuotes: Started fetching data');
-      const querySnapshot = await getDocs(collection(db, 'quotes'));
+export const fetchQuotes = createAsyncThunk<
+  Quote[], // Return type
+  void, // Argument type
+  { rejectValue: string } // Rejection value type
+>('quotes/fetchQuotes', async (_, { rejectWithValue }) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'quotes'));
 
-      if (querySnapshot.empty) {
-        console.log('fetchQuotes: No documents found in collection');
-        return [];
-      }
-
-      const data = querySnapshot.docs.map((doc) => ({
-        author: doc.data().author,
-        quote: doc.data().quote,
-        source: doc.data().source,
-      })) as Quote[];
-
-      console.log('fetchQuotes: Data fetched successfully:', {
-        data,
-      });
-
-      return data;
-    } catch (error) {
-      console.error('fetchQuotes: Error fetching data:', error);
-      throw error;
+    if (querySnapshot.empty) {
+      console.log('fetchQuotes: No documents found in collection');
+      return [];
     }
+
+    const data = querySnapshot.docs.map((doc) => ({
+      author: doc.data().author,
+      quote: doc.data().quote,
+      source: doc.data().source,
+    })) as Quote[];
+
+    return data;
+  } catch (error) {
+    console.error('fetchQuotes: Error fetching data:', error);
+    return rejectWithValue('Failed to fetch quotes data.');
   }
-);
+});
 
 const quotesSlice = createSlice({
-  name: 'quites',
+  name: 'quotes',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchQuotes.pending, (state) => {
-        state.status = 'loading';
+        state.meta.status = 'loading';
+        state.meta.error = null;
       })
       .addCase(fetchQuotes.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.quotes = action.payload;
+        state.meta.status = 'succeeded';
+        state.data = action.payload;
       })
       .addCase(fetchQuotes.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
+        state.meta.status = 'failed';
+        state.meta.error = action.payload ?? 'An unknown error occurred.';
       });
   },
 });

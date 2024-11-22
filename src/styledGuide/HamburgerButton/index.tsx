@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import { Button } from '../Button';
 
 const Line = styled.div`
@@ -9,7 +9,7 @@ const Line = styled.div`
 `;
 
 interface StyledButtonProps {
-  closed?: boolean;
+  $closed?: boolean;
 }
 
 const StyledButton = styled(Button)<StyledButtonProps>`
@@ -26,7 +26,7 @@ const StyledButton = styled(Button)<StyledButtonProps>`
     background: ${({ theme }) => theme.colors.blue};
   }
 
-  ${({ closed }) =>
+  ${({ $closed }) =>
     closed &&
     css`
       div:nth-child(1) {
@@ -46,14 +46,14 @@ const StyledButton = styled(Button)<StyledButtonProps>`
 // Props interface for the component
 interface HamburgerButtonProps {
   onClick?: () => void;
-  closed?: boolean;
+  $closed?: boolean;
 }
 
 const HamburgerButton = React.forwardRef<
   HTMLButtonElement,
   HamburgerButtonProps
->(({ onClick, closed = false, ...props }, ref) => (
-  <StyledButton onClick={onClick} closed={closed} ref={ref} {...props}>
+>(({ onClick, $closed = false, ...props }, ref) => (
+  <StyledButton onClick={onClick} $closed={closed} ref={ref} {...props}>
     <Line />
     <Line />
     <Line />

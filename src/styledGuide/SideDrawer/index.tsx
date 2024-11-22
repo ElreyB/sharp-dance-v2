@@ -1,6 +1,6 @@
 import FocusTrap from 'focus-trap-react';
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import {
   LANDING,
   ABOUT,
@@ -20,7 +20,7 @@ import { BackDrop } from './BackDrop';
 
 const ESCAPE_KEY = 27;
 
-const Nav = styled.nav<{ show: boolean }>`
+const Nav = styled.nav<{ $show: boolean }>`
   height: 100%;
   overflow: auto;
   position: fixed;
@@ -28,7 +28,7 @@ const Nav = styled.nav<{ show: boolean }>`
   top: 0;
   left: 0;
   z-index: 100;
-  transform: ${({ show }) => (show ? 'translateX(0)' : 'translateX(-100%)')};
+  transform: ${({ $show }) => ($show ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-out;
   border-right: 1px solid ${({ theme }) => theme.colors.white};
   width: 400px;
@@ -86,7 +86,7 @@ const links = [
   { to: DIANE, label: 'Diane Sharp-Nachsin' },
   { to: BIOS, label: 'Meet the SHARP Family' },
   { to: MEDIA, label: 'Repertoire' },
-  { to: INTENSIVE, label: 'Intensive' },
+  // { to: INTENSIVE, label: 'Intensive' },
   { to: EVENTS, label: 'Performances' },
   { to: CLASSES, label: 'Classes' },
   { to: CONTACT, label: 'Contact' },
@@ -102,7 +102,7 @@ const SideDrawer: React.FC<SideDrawerProps> = ({ show, onClick }) => (
   <>
     {show && <BackDrop onClick={onClick} />}
     <Nav
-      show={show}
+      $show={show}
       onKeyDown={({ key }) => {
         if (key === 'Escape') {
           onClick();
@@ -120,7 +120,7 @@ const SideDrawer: React.FC<SideDrawerProps> = ({ show, onClick }) => (
         >
           <Links>
             <HamburgerWrapper>
-              <StyledCloseButton onClick={onClick} closed />
+              <StyledCloseButton onClick={onClick} $closed />
             </HamburgerWrapper>
             {links.map(({ to, label }) => (
               <NavLink to={to} key={to} onClick={() => onClick(false)}>

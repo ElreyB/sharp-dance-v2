@@ -1,4 +1,4 @@
-import { css, FlattenInterpolation, ThemeProps } from 'styled-components/macro';
+import { css, FlattenInterpolation, ThemeProps } from 'styled-components';
 
 const primaryColors = {
   white: 'rgb(255, 255, 255)',

@@ -3,7 +3,7 @@ import { Image } from './image';
 export interface Options {
   content: string;
   noClasses?: string;
-  richtextContent?: string;
+  richTextContent?: string;
   video?: string;
 }
 
@@ -12,8 +12,9 @@ export interface Page {
   images: Image[];
   imgCredit: string;
   options: Options;
-  pageName: string;
+  $pageName?: string;
   subtitle: string;
   title: string;
-  vidoes: string[];
+  richTextContent?: string;
+  videos: string[];
 }

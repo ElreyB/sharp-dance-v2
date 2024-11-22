@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components/macro";
-import { Album, AlbumProps } from ".";
+import React from 'react';
+import styled from 'styled-components';
+import { Album, AlbumProps } from '.';
 
 // Styled component wrapping the Album with additional styles
 export const AlbumSummary = styled((props: AlbumProps) => (
@@ -16,7 +16,7 @@ export const AlbumSummary = styled((props: AlbumProps) => (
   p:before,
   .slides:before {
     bottom: 0;
-    content: "";
+    content: '';
     left: 0;
     position: absolute;
     right: 0;

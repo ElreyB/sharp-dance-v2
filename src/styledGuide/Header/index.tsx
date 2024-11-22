@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { A } from '../A';
 import { LANDING } from '../../constants';
 import HamburgerButton from '../HamburgerButton';
@@ -93,12 +93,12 @@ export function Header(): JSX.Element {
       <LogoWrapper>
         <LogoLink to={LANDING}>
           <Image
-            src={`${process.env.PUBLIC_URL}/images/SHARP-logo.png`}
+            src={`/images/SHARP-logo.png`}
             width="355px"
             alt="sharp dance"
           />
           <PhoneLogo
-            src={`${process.env.PUBLIC_URL}/images/white-logo-name.png`}
+            src={`/images/white-logo-name.png`}
             width="355px"
             alt="sharp dance"
             style={{ paddingTop: '10px' }}

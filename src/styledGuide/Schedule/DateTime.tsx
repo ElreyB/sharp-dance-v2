@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { IconAnchor } from './IconAnchor';
 import { TiTicket } from 'react-icons/ti';
 import { P } from '../P';

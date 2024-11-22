@@ -1,6 +1,6 @@
 import React from 'react';
 import { marked } from 'marked';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const Div = styled.div`
   & > p {

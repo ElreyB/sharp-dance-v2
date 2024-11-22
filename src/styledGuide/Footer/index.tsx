@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 // import { SocialIcons } from "../SocialIcons";
-import { Mailchimp } from '../Mailchimp/index.tsx';
+import { Mailchimp } from '../Mailchimp';
 import { A } from '../A';
 import {
   ABOUT,
@@ -96,10 +96,7 @@ export function Footer() {
   return (
     <StyledFooter>
       <StyledFooterContent>
-        <Img
-          src={process.env.PUBLIC_URL + '/images/sharp-logo-image-up-2.svg'}
-          alt="sharp dance"
-        />
+        <Img src={'/images/sharp-logo-image-up-2.svg'} alt="sharp dance" />
         <Mailchimp />
       </StyledFooterContent>
       <FooterActions>
