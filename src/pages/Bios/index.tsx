@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Page from '../../layouts/Page';
 import { fetchPage } from '../../redux/slices/pageSlice';
 import Loading from '../Loading';
 import MobileBios from './MobileBios';
+// import DesktopBios from './DesktopBios';
 import { RootState, AppDispatch } from '../../redux/store';
 
 export default function Bios() {
@@ -30,6 +31,7 @@ export default function Bios() {
 
   return (
     <Page headerBanner={headerBanner}>
+      {/* <DesktopBios /> */}
       <MobileBios />
     </Page>
   );

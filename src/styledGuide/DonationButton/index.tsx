@@ -15,7 +15,7 @@ const Form = styled.form`
 export const DonationButton: React.FC = () => {
   return (
     <div>
-      <Form action="https://www.paypal.com/donate" method="post" target="_top">
+      <Form action="" method="post" target="_top">
         <input type="hidden" name="hosted_button_id" value="4ZB94B83AVVY8" />
         <Input
           type="image"

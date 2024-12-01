@@ -8,7 +8,7 @@ interface MetaState {
   error: string | null;
 }
 
-interface ResourcesState {
+export interface ResourcesState {
   data: {
     staff: Resources[];
     performers: Resources[];
@@ -63,22 +63,22 @@ export const fetchResources = createAsyncThunk<
         title: doc.data().title,
       } as Resources;
 
-      if (doc.data().role === 'staff') {
+      if (doc.data().role.toLowerCase() === 'staff') {
         groupedData.staff.push(resource);
-      } else if (doc.data().role === 'performer') {
+      } else if (doc.data().role.toLowerCase() === 'performers') {
         groupedData.performers.push(resource);
-      } else if (doc.data().role === 'apprentice') {
+      } else if (doc.data().role.toLowerCase() === 'apprentices') {
         groupedData.apprentices.push(resource);
-      } else if (doc.data().role === 'guestPerformer') {
+      } else if (doc.data().role.toLowerCase() === 'guestPerformers') {
         groupedData.guestPerformers.push(resource);
-      } else if (doc.data().role === 'board') {
+      } else if (doc.data().role.toLowerCase() === 'board') {
         groupedData.board.push(resource);
-      } else if (doc.data().role === 'exboard') {
+      } else if (doc.data().role.toLowerCase() === 'exboard') {
         groupedData.exboard.push(resource);
       }
     });
 
-    console.log('fetchResources: Data fetched successfully:', groupedData);
+    console.log('fetchResources: Data fetched successfully:', { groupedData });
 
     return groupedData;
   } catch (error) {
